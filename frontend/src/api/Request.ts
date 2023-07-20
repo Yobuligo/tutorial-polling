@@ -1,7 +1,9 @@
 import { IPoll } from "../shared/types/IPoll";
+import { PollHandler } from "../shared/types/PollHandler";
 import { RequestHandler } from "../shared/types/RequestHandler";
 import { IRequest } from "./IRequest";
 import { ShortPolling } from "./ShortPolling";
+import { TodoRepository } from "./TodoRepository";
 
 export class Request<T> implements IRequest<T> {
   private strategy: IPoll<T>;
@@ -10,7 +12,7 @@ export class Request<T> implements IRequest<T> {
     this.strategy = new ShortPolling(request);
   }
 
-  onPoll(onChange: RequestHandler<T>): void {
+  onPoll(onChange: PollHandler<T>): void {
     this.strategy.onPoll(onChange);
   }
 
@@ -18,3 +20,5 @@ export class Request<T> implements IRequest<T> {
     return this.request();
   }
 }
+
+const request = new Request(TodoRepository.findAll).onPoll(() => {});
