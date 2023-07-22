@@ -1,10 +1,8 @@
 import bodyParser from "body-parser";
 import express from "express";
-import { Controller } from "./controllers/Controller";
-import { InMemoryRepository } from "./repositories/InMemoryRepository";
-import { IPoll } from "./shared/model/IPoll";
+import { PollController } from "./controllers/PollController";
 
 const server = express();
 server.use(bodyParser.json());
-server.use(new Controller("/polls", new InMemoryRepository<IPoll>()).router);
+server.use(new PollController().router);
 server.listen(5000);
