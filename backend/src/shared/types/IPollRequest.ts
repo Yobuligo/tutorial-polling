@@ -1,5 +1,5 @@
 import { PollHandler } from "./PollHandler";
 
-export interface IPoll<T> {
+export interface IPollRequest<T> {
   onPoll(onChange: PollHandler<T>): void;
 }
