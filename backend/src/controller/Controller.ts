@@ -3,7 +3,7 @@ import { IRepository } from "../shared/api/IRepository";
 import { IEntity } from "../shared/types/IEntity";
 import { IEntityDetails } from "../shared/types/IEntityDetails";
 
-export class Controller<T extends IEntity> {
+export abstract class Controller<T extends IEntity> {
   readonly router = Router();
 
   constructor(
