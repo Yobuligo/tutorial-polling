@@ -21,4 +21,4 @@ export class Request<T> implements IRequest<T> {
   }
 }
 
-const request = new Request(TodoRepository.findAll).onPoll(() => {});
+const request = new Request(TodoRepository.findAll).onPoll((data) => {});
