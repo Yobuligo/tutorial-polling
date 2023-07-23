@@ -19,6 +19,10 @@ class PollRepositoryDefault implements IPollRepository {
     return poll;
   }
 
+  deleteById(id: number): boolean {
+    return this.polls.delete(id);
+  }
+
   findById(id: number): IPoll | undefined {
     return this.polls.get(id);
   }
