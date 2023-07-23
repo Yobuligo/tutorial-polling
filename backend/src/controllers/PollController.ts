@@ -1,9 +1,16 @@
-import { InMemoryRepository } from "../repositories/InMemoryRepository";
-import { IPoll, PollMeta } from "../shared/model/IPoll";
-import { Controller } from "./Controller";
+import { Router } from "express";
+import { IPollRepository } from "../services/IPollRepository";
+import { PollMeta } from "../shared/model/IPoll";
 
-export class PollController extends Controller<IPoll> {
-  constructor() {
-    super(PollMeta.path, new InMemoryRepository<IPoll>());
+export class PollController {
+  readonly router = Router();
+
+  constructor(private readonly pollRepository: IPollRepository) {}
+
+  post() {
+    this.router.post(PollMeta.path, (req, res) => {
+      const poll = this.pollRepository.create();
+      res.status(201).send(poll);
+    });
   }
 }
